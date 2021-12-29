@@ -6,25 +6,22 @@ const initialState = {
   isAuthenticate: false,
 };
 
-export const countReducer = (state = initialState, action) => {
-  switch (action.type) {
+export const countReducer = (state = initialState, { payload, type }) => {
+  switch (type) {
     case INCREMENT_COUNT: {
       const newState = {
         ...state,
-        count: state.count + 1,
+        count: state.count + payload,
       };
       return newState;
     }
 
     case DECREMENT_COUNT: {
-      if (state.count) {
-        const newState = {
-          ...state,
-          count: state.count - 1,
-        };
-        return newState;
-      }
-      break;
+      const newState = {
+        ...state,
+        count: state.count - payload,
+      };
+      return newState;
     }
 
     default:
